@@ -1,0 +1,61 @@
+CREATE TABLE Mundob(
+    id_Mundob INT PRIMARY KEY AUTO_INCREMENT,
+    nombre varchar(60) NOT NULL,
+    ciudad varchar(60) NOT NULL,
+    direccion varchar(60) NOT NULL,
+    telefono INT NOT NULL,
+    producto varchar (200) NOT NULL,
+    tipo_Singin varchar(60) NOT NULL
+);
+CREATE TABLE Clientes(
+    id_Cliente INT PRIMARY KEY AUTO_INCREMENT,
+    nombre varchar(50)NOT NULL,
+    apellido varchar(50)NOT NULL,
+    celular varchar(20)NOT NULL,
+    email varchar(50) NOT NULL,
+    id_Mundob INT,
+    FOREIGN KEY (id_Mundob) REFERENCES Mundob (id_Mundob),
+    id_Producto INT,
+    FOREIGN KEY (id_Producto) REFERENCES Productos (id_Producto)
+);
+CREATE TABLE Productos(
+    id_Producto INT PRIMARY KEY AUTO_INCREMENT,
+    nombre varchar(60) NOT NULL,
+    precio float NOT NULL,
+    descripcion varchar(120) NOT NULL,
+    id_Mundob INT,
+    FOREIGN KEY (id_Mundob) REFERENCES Mundob (id_Mundob),
+    id_Empleado INT,
+    FOREIGN KEY (id_EmpleadO) REFERENCES Empleado (id_Empleado)
+);
+CREATE TABLE Empleado(
+    id_Empleado INT PRIMARY KEY AUTO_INCREMENT,
+    nombre_Completo varchar (60) NOT NULL,
+    celular INT NOT NULL,
+    email varchar (100) NOT NULL,
+    cargo varchar (100) NOT NULL,
+    id_Mundob INT,
+    FOREIGN KEY (id_Mundob) REFERENCES Mundob (id_Mundob),
+    id_Transaccion INT,
+    FOREIGN KEY (id_Transaccion) REFERENCES Mundob (id_Transaccion)
+);
+CREATE TABLE Transaccion(
+    id_Transaccion INT PRIMARY KEY AUTO_INCREMENT,
+    tipo varchar (60) NOT NULL,
+    fecha DATE NOT NULL,
+    descripcion varchar(120) NOT NULL,
+    id_Cliente INT,
+    FOREIGN KEY (id_Cliente) REFERENCES Clientes (id_Cliente)
+);
+CREATE TABLE Proveedores(
+    id_Proveedor INT PRIMARY KEY AUTO_INCREMENT,
+    nombre varchar(50) NOT NULL,
+    celular varchar(20)  NOT NULL,
+    email varchar(50) NOT NULL,
+    dirrecion varchar(50) NOT NULL,
+    ciudad varchar(50) NOT NULL,
+    id_Mundob INT,
+    FOREIGN KEY (id_Mundob) REFERENCES Mundob (id_Mundob),
+    id_Producto INT,
+    FOREIGN KEY (id_Producto) REFERENCES Productos (id_Producto)
+);
